@@ -1,0 +1,7 @@
+{
+  "name": "projeto_base_nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/carlos0406/projeto_base_nodejs.git",
+  "license": "MIT"
+}
