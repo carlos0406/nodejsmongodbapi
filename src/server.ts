@@ -1,10 +1,10 @@
-import express, { response } from 'express';
+import { SimpleModelController } from '@controllers/SimpleModelController'
+import express from 'express'
+const app = express()
+const controller = new SimpleModelController()
 
-const app =express();
-
-
-app.get('/',(req,res)=>{
-    return response.json({message:'Projeto basico'})
+app.get('/', (req, res) => {
+  return res.json({ message: controller.teste() })
 })
 
 app.listen(3333)
