@@ -1,5 +1,6 @@
 #dependencias da aplicacao
 node_modules/
+objetivos.md
 
 #Variaveis de ambiente
 .env

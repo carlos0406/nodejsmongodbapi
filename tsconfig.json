@@ -12,8 +12,8 @@
   "baseUrl": "./src",
   "paths": {
     "@controllers/*":["controllers/*"],
-    "@models/*":["models/*"]
+    "@schemas/*":["schemas/*"]
   }
 },
-"include": ["src"]
+"include": ["src","__tests__"]
 }
