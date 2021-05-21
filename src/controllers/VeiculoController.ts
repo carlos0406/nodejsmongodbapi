@@ -10,7 +10,16 @@ export class VeiculoController {
     })
   }
 
-  async remove (id:ObjectId): Promise<void> {
-    await Veiculo.remove({ _id: id })
+  async remove (_id:ObjectId): Promise<void> {
+    await Veiculo.remove({ _id })
+  }
+
+  async update (_id:ObjectId): Promise<void> {
+    await Veiculo.updateOne({ _id }, {
+      modelo: 'celta',
+      ano: 2011,
+      placa: 'XXX4200'
+
+    })
   }
 }
