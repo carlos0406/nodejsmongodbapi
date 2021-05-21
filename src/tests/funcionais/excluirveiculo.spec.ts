@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import { VeiculoController } from '@controllers/VeiculoController'
 // import Usuario from '../../schemas/Usuario'
 
-describe('Testando a criacao de um veiculo', () => {
+describe('Testando a exclusao de veiculo', () => {
   beforeAll(async () => {
     if (!process.env.MONGO_URL) {
       throw new Error('Servidor mongo db nao foi inicializado.')
@@ -24,18 +24,14 @@ describe('Testando a criacao de um veiculo', () => {
     await Veiculo.deleteMany({})
   })
 
-  it('Criacao de veiculo', async () => {
+  it('Deletando um veiculo', async () => {
     const veiculoController = new VeiculoController()
     await veiculoController.create()
-    const list = await Veiculo.find({})
+    const list = await Veiculo.find({}).lean()
+    const { _id } = list[0]
+    await veiculoController.remove(_id)
     expect(list).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          modelo: 'celta',
-          ano: 2010,
-          placa: 'XXX4200'
-        })
-      ])
+      expect.arrayContaining([])
     )
   })
 })
