@@ -24,8 +24,13 @@ jobs:
         with:
           node-version: 14.x
       - run : yarn --frozen-lockfile
-      - run : yarn test
+      - run : yarn test --coverage
       - run : yarn lint
+
+      - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
       
     
        
