@@ -34,11 +34,14 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
-      - name: build and zip package
+      - name: build
         run: |
           yarn build
-          cd dist
-          zip -r dist.zip
+      - name: build   
+        uses: papeloto/action-zip@v1
+        with:
+          files: dist/
+          dest: dist.zip
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
