@@ -1,6 +1,5 @@
 import Veiculo from '@schemas/Veiculo'
 import { Request, Response } from 'express'
-
 export class VeiculoController {
   async create (request: Request, response: Response) {
     try {

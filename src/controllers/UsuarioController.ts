@@ -1,6 +1,5 @@
 import Usuario from '@schemas/Usuario'
 import { Request, Response } from 'express'
-
 export class UsuarioController {
   async create (request: Request, response: Response) {
     try {
