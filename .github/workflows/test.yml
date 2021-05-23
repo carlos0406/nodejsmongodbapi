@@ -34,8 +34,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
-      - name: zip package
+      - name: build and zip package
         run: |
+          yarn build
           cd dist
           zip -r ${{ github.workspace }}/dist.zip
       - name: Deploy to EB
