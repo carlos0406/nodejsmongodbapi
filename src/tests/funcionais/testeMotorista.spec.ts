@@ -1,8 +1,8 @@
+import Usuario from '@schemas/Usuario'
 import Veiculo from '@schemas/Veiculo'
 import mongoose from 'mongoose'
-// import { request } from 'supertest'
-// import app from '../../app'
-// import Usuario from '../../schemas/Usuario'
+import request from 'supertest'
+import app from '../../app'
 
 describe('Testando a criacao de um veiculo', () => {
   beforeAll(async () => {
@@ -22,9 +22,31 @@ describe('Testando a criacao de um veiculo', () => {
   })
 
   beforeEach(async () => {
+    await Usuario.deleteMany({})
     await Veiculo.deleteMany({})
   })
 
-  it('Criacao de veiculo', async () => {
+  it('Criacao de motorista valido', async () => {
+    const veiculoReq = await request(app)
+      .post('/veiculos')
+      .send(
+        {
+          modelo: 'celta',
+          ano: 2012,
+          placa: 'XXXX5444'
+        }
+      )
+
+    const { status } = await request(app)
+      .post('/usuarios')
+      .send({
+        nome: 'robson',
+        telefone: '40028922',
+        email: 'robson@gmailcom',
+        cpf: '000.000.000-00',
+        cnh: '000000000',
+        veiculo: veiculoReq.body._id
+      })
+    expect(status).toBe(201)
   })
 })

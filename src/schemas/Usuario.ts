@@ -22,12 +22,6 @@ const UsuarioSchema = new Schema(
       trim: true,
       required: true
     },
-    senha: {
-      type: String,
-      lowercase: true,
-      trim: true,
-      required: true
-    },
     cpf: {
       type: String,
       lowercase: true,
