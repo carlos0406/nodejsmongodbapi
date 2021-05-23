@@ -36,7 +36,7 @@ jobs:
           path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
       - name: zip package
         run: |
-          cd /dist
+          cd dist
           zip -r ${{ github.workspace }}/dist.zip
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
