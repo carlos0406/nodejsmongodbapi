@@ -38,7 +38,7 @@ jobs:
         run: |
           yarn build
           cd dist
-          zip -r /dist.zip
+          zip -r dist.zip
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
