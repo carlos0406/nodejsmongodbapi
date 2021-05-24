@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies and test
+        run: |
+          yarn --frozen-lockfile
+          yarn lint
+          yarn test --coverage  
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
+      - name: build
+        run: |
+          yarn build
+      - name: Zipping files   
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./
+          dest: dist.zip
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACESS_KEY }}
+          application_name: nodeteste
+          environment_name: Nodeteste-env-1
+          version_label: ${{ github.run_id }}
+          version_description: ${{ github.sha }}
+          region: sa-east-1
+          deployment_package: dist.zip
+
