@@ -11,4 +11,9 @@ export class UsuarioController {
       return response.status(400).send()
     }
   }
+
+  async index (request: Request, response: Response) {
+    const usuarios = await Usuario.find({}).lean()
+    return response.json(usuarios)
+  }
 }
