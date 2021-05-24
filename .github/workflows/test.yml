@@ -49,8 +49,8 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACESS_KEY }}
           application_name: apinodetesteci
           environment_name: Apinodetesteci-env
-          version_label: ${{github.run_id}}2
-          version_description: ${{github.sha}}2
+          version_label: ${{github.run_id}}
+          version_description: ${{github.sha}}
           region: sa-east-1
           deployment_package: dist.zip
 
