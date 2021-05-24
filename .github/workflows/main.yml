@@ -4,9 +4,9 @@ name: Tetse
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ testeusuarios ]
   pull_request:
-    branches: [ dev ]
+    branches: [ testeusuarios ]
 
   workflow_dispatch:
 
