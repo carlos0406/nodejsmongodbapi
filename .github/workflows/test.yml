@@ -40,7 +40,7 @@ jobs:
       - name: build   
         uses: papeloto/action-zip@v1
         with:
-          files: dist/
+          files: ./
           dest: dist.zip
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v16
