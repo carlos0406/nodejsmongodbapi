@@ -18,7 +18,7 @@ export class VeiculoController {
   }
 
   async basic (request: Request, response: Response) {
-    return response.json({ message: 'Olá, mundo' })
+    return response.json({ message: 'Olá, AWS' })
   }
 
   async remove (request: Request, response: Response) {
