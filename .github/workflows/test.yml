@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, deployaws ]
+    branches: [ deployaws ]
   pull_request:
-    branches: [ main, deployaws ]
+    branches: [ deployaws ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
       - name: build
         run: |
           yarn build
-      - name: build   
+      - name: Zipping files   
         uses: papeloto/action-zip@v1
         with:
           files: ./
@@ -47,8 +47,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACESS_KEY }}
-          application_name: apinodetesteci
-          environment_name: Apinodetesteci-env
+          application_name: nodejsteste
+          environment_name: Nodejsteste-env
           version_label: ${{github.run_id}}
           version_description: ${{github.sha}}
           region: sa-east-1
