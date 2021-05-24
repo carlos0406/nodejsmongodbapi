@@ -11,4 +11,5 @@ routes.get('/veiculos', veiculoController.index)
 routes.delete('/veiculos/:_id', veiculoController.remove)
 routes.put('/veiculos/:_id', veiculoController.update)
 routes.post('/usuarios', usuarioController.create)
+routes.get('/usuarios', usuarioController.index)
 export default routes
